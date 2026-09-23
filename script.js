@@ -1,83 +1,164 @@
 
 
-console.log("Hello, World! Play Rock-Paper-Scissors");
-console.log("See if you can beat the computer!")
-
 let humanScore = 0;
 let computerScore = 0;
 
-let count = 1;
-while (count <= 5) {
-    const humanChoice = getHumanChoice().toLowerCase();
-    const computerChoice = getComputerChoice().toLowerCase();
-    playGame(humanChoice, computerChoice);
-    count++;
+
+
+const startButton = document.querySelector("#startBtn");
+const buttonsToPlay = document.querySelector(".buttons-selection");
+
+
+startButton.addEventListener('click', () => {
+    
+    let oneButton = buttonsToPlay.querySelector("button");
+
+    disableButtons(false);
+
+    if (!oneButton.disabled) {
+        let divs = document.querySelectorAll(".current-round, .human-score, .computer-score, .final-score, .restart");
+        
+        divs.forEach((div) => {
+            div.textContent = "";
+            
+        });
+
+        displayWhoseScoreText('none');
+        displayScoresBorder('none');
+        
+    }
+    
+    humanScore = 0;
+    computerScore = 0;
+    
+});
+
+
+function disableButtons(value) {
+    const buttons = buttonsToPlay.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.disabled = value;
+    });
+    
 }
 
-if (humanScore > computerScore) {
-    console.log("Wow, super! You beat the computer!")
+
+function displayWhoseScoreText(value) {
+    const whoseScore = document.querySelectorAll(".whose-score");
+        whoseScore.forEach((div) => {
+            div.style.display = value;
+        });
 }
-else if (computerScore > humanScore) {
-    console.log("Nice try 😁")
+
+
+function displayScoresBorder(value) {
+    const scoresBorders = document.querySelectorAll(".score");
+        scoresBorders.forEach((div) => {
+            div.style.display = value;
+        });
+        
 }
-else {
-    console.log("A tie! Great job!");
-}
+
+
+
+buttonsToPlay.addEventListener('click', (event) => {
+    const clickedButton = event.target;
+
+    if (!clickedButton.disabled) {
+        //this fixes a bug where when I click anywhere on the area that aligns with the buttons, the scores text appears and counts
+        if (!clickedButton.matches("button")) {
+            return; //do nothing
+        }
+
+        const buttonText = clickedButton.textContent;
+        playGame(buttonText, getComputerChoice());
+
+        const finalScoreText = document.querySelector(".final-score");
+        finalScoreText.textContent = finalScore();
+
+    }
+ 
+
+});
+
 
 
 function getComputerChoice() {
     let number = Math.floor(Math.random() * 3) + 1;
     if (number === 1) {
-        return "rock";
+        return "Rock";
     }
     else if (number === 2) {
-        return "paper";
+        return "Paper";
     }
     else if (number === 3) {
-        return "scissors";
+        return "Scissors";
     }
     
-}
-
-/*this assumes user will always enter a valid choice*/
-function getHumanChoice() {
-    let choice = prompt("Type any of these: paper, rock, scissors");
-    return choice;
-}
-
-
-function playRound(humanChoice, computerChoice) {
-    const capitalizeHuman = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-    const capitalizeComputer = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-    
-    if (
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper") ||
-        (humanChoice === "rock" && computerChoice === "scissors")
-    ) {
-        console.log(`You won! ${capitalizeHuman} beats ${capitalizeComputer}.`);
-        humanScore++;
-    }
-    else if (humanChoice === computerChoice) {
-        console.log(`It's a tie! You both chose ${capitalizeHuman}.`);
-    }
-    else {
-        console.log(`You lose! ${capitalizeComputer} beats ${capitalizeHuman}.`);
-        computerScore++;
-    }
-
 }
 
 
 function playGame(humanChoice, computerChoice) {
+    const humanScoreText = document.querySelector(".human-score");
+    const computerScoreText = document.querySelector(".computer-score");
+    
     playRound(humanChoice, computerChoice);
-    console.log("Human: " + humanScore);
-    console.log("Computer: " + computerScore);
+    
+    displayWhoseScoreText('');
+    displayScoresBorder('');
+    
+    humanScoreText.textContent = humanScore;
+    computerScoreText.textContent = computerScore;
+
+    if (humanScore === 5 || computerScore === 5) {
+        disableButtons(true);
+
+        const restartText = document.querySelector(".restart");
+        restartText.textContent = "Want to play another round? Just click the Start button."
+        
+    }
+
+}
+
+
+function playRound(humanChoice, computerChoice) {
+    
+    const roundText = document.querySelector(".current-round");
+
+    if (
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper") ||
+        (humanChoice === "Rock" && computerChoice === "Scissors")
+    ) {  
+        roundText.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
+        humanScore++;
+
+    }
+    else if (humanChoice === computerChoice) {
+        roundText.textContent = `It's a tie! You both chose ${humanChoice}.`;
+    }
+    else { 
+        roundText.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+        computerScore++;
+    }
+
 
 }
 
 
 
+function finalScore() {
+    
+    if (humanScore === 5) {
+        return "Wow, super! You beat the computer!";
+    }
+    else if (computerScore === 5) {
+        return "Computer wins! Nice try 😁";
+    }
 
-/*unfortunately, throughout the lessons so far, I haven't been able to install Xubuntu successfully, hence, still using my own Windows OS, hence, the line below*/
-window.getComputerChoice = getComputerChoice;
+    
+        
+    
+}
+
+

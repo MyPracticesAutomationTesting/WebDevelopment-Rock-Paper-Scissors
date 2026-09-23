@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <script type="module" src="./script.js">
+    <div class="heading">
+        <h1>Hello, World! Let's play Rock-Paper-Scissors!</h1>
+        <h2>See if you can beat the computer!</h2>
+    </div>
+    <div class="play-card">
+        <div class="to-start">
+            <div class="instruction">To start playing, click the <strong>Start</strong> button below.</div>
+            <button id="startBtn">Start</button>
+        </div>
+        <p class="instruction">Click any of the buttons below to select your choice. First to reach 5 points is declared the winner.</p>
+        <div class="buttons-selection">
+            <button disabled>Rock</button>
+            <button disabled>Paper</button>
+            <button disabled>Scissors</button>
+        </div>
+        <div class="scores-tab">
+            <div class="current-round"></div>
+            <div class="running-score">
+                <div class="score" style="display: none">
+                    <div class="whose-score" style="display: none">Your score</div>
+                    <div class="human-score"></div>
+                </div>
+                <div class="score" style="display: none">
+                    <div class="whose-score" style="display: none">Computer score</div>
+                    <div class="computer-score"></div>
+                </div>
+            </div>
+            <div class="winner">
+                <div class="final-score"></div>
+                <div class="restart"></div>
+            </div> 
+        </div>
         
-    </script>
+    </div>
+
+    <script type="module" src="./script.js"></script>
 </body>
 </html>
