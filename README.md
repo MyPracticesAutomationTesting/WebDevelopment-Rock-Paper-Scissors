@@ -9,6 +9,8 @@ The Odin Project projects rock! 😁
 
 https://youtu.be/1G-andU3Q1E
 
+https://mypracticesautomationtesting.github.io/WebDevelopmentTOPJavascriptProject1/
+
 
 
 
