@@ -9,7 +9,7 @@ The Odin Project projects rock! 😁
 
 https://youtu.be/1G-andU3Q1E
 
-https://mypracticesautomationtesting.github.io/WebDevelopmentTOPJavascriptProject1/
+https://mypracticesautomationtesting.github.io/WebDevelopment-Rock-Paper-Scissors/
 
 
 <video src="https://github.com/user-attachments/assets/b1b0eb64-bc96-4c41-9296-53face84e7e9" width="100%" controls></video>
