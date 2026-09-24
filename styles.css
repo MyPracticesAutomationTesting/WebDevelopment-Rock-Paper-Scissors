@@ -3,6 +3,9 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     background-color:blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
 }
 
@@ -17,19 +20,21 @@ h2 {
     flex-direction: column;
     gap: 10px;
     background-color:burlywood;
+    width: 100%;
 
 }
 
 .play-card {
     padding-top: 28px;
-
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .to-start {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
     align-items: center;
     padding-bottom: 28px;
 
@@ -63,7 +68,6 @@ button:disabled {
     align-items: center;
 
 }
-
 
 
 .running-score {
@@ -101,4 +105,18 @@ button:disabled {
     font-size: 28px;
     color:darkcyan;
     font-weight: bold;
+    
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    margin-top: auto;
+    height: 26px;
+    width: 100%;
+    background-color:burlywood;
+
 }
